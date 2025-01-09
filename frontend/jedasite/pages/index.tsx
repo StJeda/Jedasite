@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { Provider } from "@/components/ui/provider"
-import { HStack, Box, Flex } from "@chakra-ui/react"
+import {  HStack, Box } from "@chakra-ui/react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
