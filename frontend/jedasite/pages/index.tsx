@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { Provider } from "@/components/ui/provider"
-import { HStack, Box } from "@chakra-ui/react"
+import { HStack, Box, Flex } from "@chakra-ui/react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +28,8 @@ export default function Home() {
         <Provider>
           <HStack gap="0" bgColor="black" width="100vw" height="100vh">
             <Box bgColor="#282828" width="4vw" height="100vh"></Box>
-            <Box flex={1} bgColor="#282828" height="100vh">
-              <Box bgColor="#151515" marginTop="3vh" height="96vh" marginBottom="3vh" borderRadius="2vh"></Box>
+            <Box bgColor="#282828" width="92vw" height="100vh">
+              <Box bgColor="#151515" marginTop="4vh" height="92vh" marginBottom="4vh" borderRadius="2vh"></Box>
             </Box>
             <Box bgColor="#282828" width="4vw" height="100vh"></Box>
           </HStack>
