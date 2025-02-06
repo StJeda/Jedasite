@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-IHost host = Host.CreateDefaultBuilder(args)
+var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
          
