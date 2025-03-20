@@ -13,7 +13,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'cd frontend'
                     sh 'cd jedasite'
                     sh 'docker build -t my-next-app .'
                 }
