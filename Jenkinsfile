@@ -5,7 +5,7 @@ pipeline {
         stage('Pull latest code') {
             steps {
                 script {
-                    sh 'git pull origin main'
+                    sh 'git pull origin master'
                 }
             }
         }
