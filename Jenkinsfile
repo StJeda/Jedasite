@@ -21,7 +21,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'SonarScanner'
+                    def scannerHome = tool 'Jedasite'
                     withSonarQubeEnv('Jedasite') {  
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
