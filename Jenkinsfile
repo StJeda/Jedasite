@@ -1,16 +1,8 @@
 pipeline {
     agent any
     
-    environment {
-        JAVA_HOME = tool 'jdk11'
-    }
-    
     triggers {
         pollSCM('* * * * *') 
-    }
-
-    tools {
-        sonarScanner 'Jedasite'
     }
     
     stages {
@@ -18,17 +10,6 @@ pipeline {
             steps {
                 script {
                     sh 'git pull origin master'
-                }
-            }
-        }
-
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    def scannerHome = tool 'Jedasite'
-                    withSonarQubeEnv('Jedasite') {  
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
                 }
             }
         }
