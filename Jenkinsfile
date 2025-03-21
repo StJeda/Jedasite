@@ -4,6 +4,18 @@ pipeline {
     triggers {
         pollSCM('* * * * *') 
     }
+
+    discordSend {
+      webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
+      discordSend description: 'Status of my Project',
+      footer: '',
+      image: '',
+      link: env.BUILD_URL,
+      result: currentBuild.currentResult,
+      scmWebUrl: '',
+      thumbnail: '',
+      title: JOB_NAME
+    }
     
     stages {
         stage('Pull latest code') {
