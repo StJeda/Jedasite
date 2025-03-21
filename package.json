@@ -21,6 +21,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "sonarqube-scanner": "^3.5.0",
     "typescript": "^5"
   }
 }
