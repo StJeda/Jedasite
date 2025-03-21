@@ -6,7 +6,7 @@ pipeline {
     }
 
     tools {
-        sonarScanner 'Jedasite'
+        sonarRunner 'Jedasite'
     }
     
     stages {
