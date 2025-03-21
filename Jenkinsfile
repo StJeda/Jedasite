@@ -50,26 +50,30 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment successful!'
-            discordSend(
-                webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
-                description: '✅ Deployment successful!',
-                footer: 'Jenkins CI/CD',
-                link: env.BUILD_URL,
-                result: currentBuild.currentResult,
-                title: JOB_NAME
-            )
+            script {
+                def user = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)?.userId ?: 'Unknown'
+                discordSend(
+                    webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
+                    description: "✅ Deployment successful!\n**Build:** #${BUILD_NUMBER}\n**Triggered by:** ${user}",
+                    footer: 'Jenkins CI/CD',
+                    link: env.BUILD_URL,
+                    result: currentBuild.currentResult,
+                    title: JOB_NAME
+                )
+            }
         }
         failure {
-            echo 'Deployment failed!'
-            discordSend(
-                webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
-                description: '❌ Deployment failed!',
-                footer: 'Jenkins CI/CD',
-                link: env.BUILD_URL,
-                result: currentBuild.currentResult,
-                title: JOB_NAME
-            )
+            script {
+                def user = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)?.userId ?: 'Unknown'
+                discordSend(
+                    webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
+                    description: "❌ Deployment failed!\n**Build:** #${BUILD_NUMBER}\n**Triggered by:** ${user}",
+                    footer: 'Jenkins CI/CD',
+                    link: env.BUILD_URL,
+                    result: currentBuild.currentResult,
+                    title: JOB_NAME
+                )
+            }
         }
     }
 }
