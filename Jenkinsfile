@@ -1,6 +1,10 @@
 pipeline {
     agent any
-
+    
+    environment {
+        JAVA_HOME = tool 'jdk11'
+    }
+    
     triggers {
         pollSCM('* * * * *') 
     }
