@@ -2,27 +2,13 @@ pipeline {
     agent any
     
     triggers {
-        pollSCM('* * * * *') 
+        pollSCM('H/5 * * * *')
     }
 
-    discordSend {
-      webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
-      discordSend description: 'Status of my Project',
-      footer: '',
-      image: '',
-      link: env.BUILD_URL,
-      result: currentBuild.currentResult,
-      scmWebUrl: '',
-      thumbnail: '',
-      title: JOB_NAME
-    }
-    
     stages {
-        stage('Pull latest code') {
+        stage('Checkout Code') {
             steps {
-                script {
-                    sh 'git pull origin master'
-                }
+                checkout scm
             }
         }
 
@@ -56,9 +42,7 @@ pipeline {
         stage('Cleanup Old Containers') {
             steps {
                 script {
-                    sh '''
-                    docker ps -a --format "{{.ID}}" | tail -n +8 | xargs --no-run-if-empty docker rm -f
-                    '''
+                    sh 'docker system prune -f'
                 }
             }
         }
@@ -67,9 +51,25 @@ pipeline {
     post {
         success {
             echo 'Deployment successful!'
+            discordSend(
+                webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
+                description: '✅ Deployment successful!',
+                footer: 'Jenkins CI/CD',
+                link: env.BUILD_URL,
+                result: currentBuild.currentResult,
+                title: JOB_NAME
+            )
         }
         failure {
             echo 'Deployment failed!'
+            discordSend(
+                webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
+                description: '❌ Deployment failed!',
+                footer: 'Jenkins CI/CD',
+                link: env.BUILD_URL,
+                result: currentBuild.currentResult,
+                title: JOB_NAME
+            )
         }
     }
 }
