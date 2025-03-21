@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('* * * * *') 
+    }
+    
     stages {
         stage('Pull latest code') {
             steps {
