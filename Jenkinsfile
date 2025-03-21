@@ -4,6 +4,10 @@ pipeline {
     triggers {
         pollSCM('* * * * *') 
     }
+
+    tools {
+        sonarScanner 'Jedasite'
+    }
     
     stages {
         stage('Pull latest code') {
