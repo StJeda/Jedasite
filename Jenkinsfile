@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     triggers {
         pollSCM('H/5 * * * *')
     }
@@ -51,7 +51,7 @@ pipeline {
     post {
         success {
             script {
-                def user = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)?.userId ?: 'Unknown'
+                def user = currentBuild.getBuildCauses().find { it.class.name == 'hudson.model.Cause$UserIdCause' }?.userId ?: 'Unknown'
                 discordSend(
                     webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
                     description: "✅ Deployment successful!\n**Build:** #${BUILD_NUMBER}\n**Triggered by:** ${user}",
@@ -62,9 +62,9 @@ pipeline {
                 )
             }
         }
+
         failure {
-            script {
-                def user = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)?.userId ?: 'Unknown'
+                def user = currentBuild.getBuildCauses().find { it.class.name == 'hudson.model.Cause$UserIdCause' }?.userId ?: 'Unknown'
                 discordSend(
                     webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
                     description: "❌ Deployment failed!\n**Build:** #${BUILD_NUMBER}\n**Triggered by:** ${user}",
