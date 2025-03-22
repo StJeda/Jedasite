@@ -56,7 +56,7 @@ pipeline {
     
                 discordSend(
                     webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
-                    description: "✅ Deployment successful!\n**Build:** #${BUILD_NUMBER}\n**Name of build:** #${BUILD_DISPLAY_NAME}\n**Commit by:** ${author}\n**Committed at:** ${commitTime}",
+                    description: "✅ Deployment successful!\n**Build:** #${BUILD_NUMBER}\n**\n**Commit by:** ${author}\n**Committed at:** ${commitTime}",
                     footer: 'Jenkins CI/CD',
                     link: env.BUILD_URL,
                     result: currentBuild.currentResult,
@@ -72,7 +72,7 @@ pipeline {
     
                 discordSend(
                     webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
-                    description: "❌ Deployment failed!\n**Build:** #${BUILD_NUMBER}\n**Name of build:** #${BUILD_DISPLAY_NAME}\n**Commit by:** ${author}\n**Committed at:** ${commitTime}",
+                    description: "❌ Deployment failed!\n**Build:** #${BUILD_NUMBER}\n**\n**Commit by:** ${author}\n**Committed at:** ${commitTime}",
                     footer: 'Jenkins CI/CD',
                     link: env.BUILD_URL,
                     result: currentBuild.currentResult,
