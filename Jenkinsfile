@@ -51,12 +51,9 @@ pipeline {
     post {
         success {
             script {
-                def userCause = currentBuild.getBuildCauses().find { it.class.name == 'hudson.model.Cause$UserIdCause' }
-                def user = userCause?.getUserName() ?: 'Unknown'
-
                 discordSend(
                     webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
-                    description: "✅ Deployment successful!\n**Build:** #${BUILD_NUMBER}\n**Triggered by:** ${user}",
+                    description: "✅ Deployment successful!\n**Build:** #${BUILD_NUMBER}\n**Triggered by:** ${USER}",
                     footer: 'Jenkins CI/CD',
                     link: env.BUILD_URL,
                     result: currentBuild.currentResult,
@@ -67,12 +64,9 @@ pipeline {
 
         failure {
             script {
-                def userCause = currentBuild.getBuildCauses().find { it.class.name == 'hudson.model.Cause$UserIdCause' }
-                def user = userCause?.getUserName() ?: 'Unknown'
-
                 discordSend(
                     webhookURL: "https://discord.com/api/webhooks/1352787577736007732/CcbzMW6zj7wa8HRjfQxJuKrMFFmzlLIolgokxt92I5cCm8vKLfIk6WoiO6t3osBAsdlz",
-                    description: "❌ Deployment failed!\n**Build:** #${BUILD_NUMBER}\n**Triggered by:** ${user}",
+                    description: "❌ Deployment failed!\n**Build:** #${BUILD_NUMBER}\n**Triggered by:** ${USER}",
                     footer: 'Jenkins CI/CD',
                     link: env.BUILD_URL,
                     result: currentBuild.currentResult,
