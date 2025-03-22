@@ -61,7 +61,7 @@ pipeline {
                 )
             }
         }
-
+      
         failure {
             script {
                 discordSend(
