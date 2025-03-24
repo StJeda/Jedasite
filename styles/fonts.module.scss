@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'ExoItalic';
+    src: url('/fonts/Exo-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+.exoItalic {
+    font-family: 'ExoItalic', sans-serif;
+    font-style: italic;
+}
