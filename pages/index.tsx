@@ -1,5 +1,4 @@
-import { FC } from "react";
-import { Dispatch, FC, RefObject, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
+import { Dispatch, FC, ReactElement, RefObject, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
 import sass from '/styles/mainpage.module.scss'
 import fonts from '/styles/fonts.module.scss'
 import MainComponent from "./components/main-component";
@@ -7,15 +6,11 @@ import WhyChooseUs from "./components/why-choose-us";
 import StackTechnologies from "./components/stack-techtologies";
 
 const Home: FC = () => {
-  const mainRef = useRef<HTMLDivElement | null>(null);
-  const whyChooseUsRef = useRef<HTMLDivElement | null>(null);
-  const stackTechnologiesRef = useRef<HTMLDivElement | null>(null);
-
   const [currentPage, setCurrentPage] = useState(CurrentPage.Main)
   const pages = useMemo(() => [
-    { page: CurrentPage.Main, ref: mainRef },
-    { page: CurrentPage.WhyChooseUs, ref: whyChooseUsRef },
-    { page: CurrentPage.StackTechnologies, ref: stackTechnologiesRef },
+    CurrentPage.Main,
+    CurrentPage.WhyChooseUs,
+    CurrentPage.StackTechnologies,
   ], []);
 
   useEffect(() => {
@@ -27,16 +22,16 @@ const Home: FC = () => {
 
     const handleWheel = (event: WheelEvent) => {
       if (throttleTimeout) return;
-  
+
       event.preventDefault();
-  
+
       if (Math.abs(event.deltaY) > 40) {
-        const currentIndex = pages.findIndex((p) => p.page === currentPage);
+        const currentIndex = pages.findIndex((p) => p === currentPage);
         if (currentIndex !== -1) {
           const nextIndex = event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
           if (nextIndex >= 0 && nextIndex < pages.length) {
             const nextPage = pages[nextIndex];
-            scrollIntoSpecifiedView(setCurrentPage, nextPage.page, nextPage.ref);
+            setCurrentPage(nextPage);
           }
         }
       }
@@ -47,26 +42,33 @@ const Home: FC = () => {
     return () => window.removeEventListener('wheel', handleWheel);
   }, [currentPage]);
 
+  const pageToRender = getPageComponent(currentPage);
   return (
     <div className={sass.layout}>
-      <div ref={mainRef} id="main" className={sass.content_container}>
-        <MainComponent />
-      </div>
-      <div ref={whyChooseUsRef} id="whyChooseUs" className={sass.content_container}>
-        <WhyChooseUs />
-      </div>
-      <div ref={stackTechnologiesRef} id="stackTechnologies" className={sass.content_container}>
-        <StackTechnologies />
+      <div className={sass.content_container}>
+        {pageToRender}
       </div>
     </div>
   );
 };
 
-function scrollIntoSpecifiedView(setCurrentPage: Dispatch<SetStateAction<CurrentPage>>, nextPage: CurrentPage, ref: RefObject<HTMLDivElement | null>){
-  ref.current?.scrollIntoView({
-    behavior: 'smooth'
-  })
-  setCurrentPage(nextPage);
+function getPageComponent(currentPage: CurrentPage): ReactElement {
+  let component: ReactElement;
+  switch (currentPage) {
+    case CurrentPage.Main:
+      component = <MainComponent />
+      break;
+    case CurrentPage.WhyChooseUs:
+      component = <WhyChooseUs />
+      break;
+    case CurrentPage.StackTechnologies:
+      component = <StackTechnologies />
+      break;
+    default:
+      throw Error(`Unexpected case with current page ${currentPage}`)
+  }
+
+  return component;
 }
 
 enum CurrentPage {

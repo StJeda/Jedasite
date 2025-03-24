@@ -20,7 +20,6 @@ $content-container-bg: url('https://www.transparenttextures.com/patterns/asfalt-
 .layout {
     @include systemlayout;
     background-color: #282828;
-    overflow: hidden;
 }
 
 .logo {
@@ -32,7 +31,8 @@ $content-container-bg: url('https://www.transparenttextures.com/patterns/asfalt-
 
 .content_container {
     @include systemlayout;
-    height: 100vh;
+    height: 92vh;
+    margin: 4vh 0;
     width: 92.24vw;
     animation: noise 150s infinite alternate;
     background: $content-container-bg;
