@@ -1,5 +1,7 @@
+import { FC } from "react";
 import { Dispatch, FC, RefObject, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
 import sass from '/styles/mainpage.module.scss'
+import fonts from '/styles/fonts.module.scss'
 import MainComponent from "./components/main-component";
 import WhyChooseUs from "./components/why-choose-us";
 import StackTechnologies from "./components/stack-techtologies";
@@ -72,6 +74,5 @@ enum CurrentPage {
   WhyChooseUs,
   StackTechnologies
 }
-
 
 export default Home;
