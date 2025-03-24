@@ -1,5 +1,6 @@
 import { FC } from "react";
-import sass from '/styles/mainpage.module.scss'
+import sass from '/styles/mainpage.module.scss';
+import fonts from '/styles/fonts.module.scss'
 import MainComponent from "./components/main-component";
 
 const Home: FC = () => {
