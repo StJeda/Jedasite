@@ -25,16 +25,7 @@ const Home: FC = () => {
 
       event.preventDefault();
 
-      if (Math.abs(event.deltaY) > 40) {
-        const currentIndex = pages.findIndex((p) => p === currentPage);
-        if (currentIndex !== -1) {
-          const nextIndex = event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
-          if (nextIndex >= 0 && nextIndex < pages.length) {
-            const nextPage = pages[nextIndex];
-            setCurrentPage(nextPage);
-          }
-        }
-      }
+      switchPage(pages, setCurrentPage, currentPage, event);
     };
 
     window.addEventListener('wheel', handleWheel, { passive: false });
@@ -69,6 +60,19 @@ function getPageComponent(currentPage: CurrentPage): ReactElement {
   }
 
   return component;
+}
+
+function switchPage(pages: CurrentPage[], setCurrentPage: Dispatch<SetStateAction<CurrentPage>>, currentPage: CurrentPage, event: WheelEvent){
+  if (Math.abs(event.deltaY) > 40) {
+    const currentIndex = pages.findIndex((p) => p === currentPage);
+    if (currentIndex !== -1) {
+      const nextIndex = event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
+      if (nextIndex >= 0 && nextIndex < pages.length) {
+        const nextPage = pages[nextIndex];
+        setCurrentPage(nextPage);
+      }
+    }
+  }
 }
 
 enum CurrentPage {
