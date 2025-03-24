@@ -1,4 +1,4 @@
-import { Dispatch, FC, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, FC, RefObject, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
 import sass from '/styles/mainpage.module.scss'
 import MainComponent from "./components/main-component";
 import WhyChooseUs from "./components/why-choose-us";
@@ -10,41 +10,32 @@ const Home: FC = () => {
   const stackTechnologiesRef = useRef<HTMLDivElement | null>(null);
 
   const [currentPage, setCurrentPage] = useState(CurrentPage.Main)
+  const pages = useMemo(() => [
+    { page: CurrentPage.Main, ref: mainRef },
+    { page: CurrentPage.WhyChooseUs, ref: whyChooseUsRef },
+    { page: CurrentPage.StackTechnologies, ref: stackTechnologiesRef },
+  ], []);
 
   useEffect(() => {
-    let throttleTimeout: NodeJS.Timeout | null = null; // Use timeout to prevent too often method calls, for example after strong scroll
+    let throttleTimeout: NodeJS.Timeout | null = null;
 
     throttleTimeout = setTimeout(() => {
       throttleTimeout = null;
     }, 300)
 
     const handleWheel = (event: WheelEvent) => {
-      if(throttleTimeout) return;
-
+      if (throttleTimeout) return;
+  
       event.preventDefault();
-
-      if(Math.abs(event.deltaY) > 40){
-        switch (currentPage) {
-          case CurrentPage.Main:
-            if(event.deltaY > 0){
-              scrollIntoSpecifiedView(setCurrentPage, CurrentPage.WhyChooseUs, whyChooseUsRef);
-            }
-            break;
-          case CurrentPage.WhyChooseUs:
-            if(event.deltaY > 0){
-              scrollIntoSpecifiedView(setCurrentPage, CurrentPage.StackTechnologies, stackTechnologiesRef);
-            } else {
-              scrollIntoSpecifiedView(setCurrentPage, CurrentPage.Main, mainRef);
-            }
-            break;
-          case CurrentPage.StackTechnologies:
-            if(event.deltaY < 0){
-              scrollIntoSpecifiedView(setCurrentPage, CurrentPage.WhyChooseUs, whyChooseUsRef);
-            }
-            break;
-          default:
-            console.log("NONE") 
-            break;
+  
+      if (Math.abs(event.deltaY) > 40) {
+        const currentIndex = pages.findIndex((p) => p.page === currentPage);
+        if (currentIndex !== -1) {
+          const nextIndex = event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
+          if (nextIndex >= 0 && nextIndex < pages.length) {
+            const nextPage = pages[nextIndex];
+            scrollIntoSpecifiedView(setCurrentPage, nextPage.page, nextPage.ref);
+          }
         }
       }
     };
