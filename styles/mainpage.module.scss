@@ -4,9 +4,11 @@ $content-container-bg: url('https://www.transparenttextures.com/patterns/asfalt-
 
 @mixin systemlayout {
     overflow: hidden;
+
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
+    flex-direction: column;
 }
 
 @mixin logo-animation {
@@ -18,8 +20,6 @@ $content-container-bg: url('https://www.transparenttextures.com/patterns/asfalt-
 .layout {
     @include systemlayout;
     background-color: #282828;
-    height: 100vh;
-    margin: 0px;
 }
 
 .logo {
@@ -32,6 +32,7 @@ $content-container-bg: url('https://www.transparenttextures.com/patterns/asfalt-
 .content_container {
     @include systemlayout;
     height: 92vh;
+    margin: 4vh 0;
     width: 92.24vw;
     animation: noise 150s infinite alternate;
     background: $content-container-bg;
