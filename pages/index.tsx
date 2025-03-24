@@ -1,6 +1,5 @@
-import { Dispatch, FC, ReactElement, RefObject, SetStateAction, useEffect, useMemo, useRef, useState } from "react";
+import { Dispatch, FC, ReactElement, SetStateAction, useEffect, useMemo, useState } from "react";
 import sass from '/styles/mainpage.module.scss'
-import fonts from '/styles/fonts.module.scss'
 import MainComponent from "./components/main-component";
 import WhyChooseUs from "./components/why-choose-us";
 import StackTechnologies from "./components/stack-techtologies";
@@ -8,33 +7,60 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Home: FC = () => {
   const [currentPage, setCurrentPage] = useState(CurrentPage.Main)
+
   const pages = useMemo(() => [
     CurrentPage.Main,
     CurrentPage.WhyChooseUs,
     CurrentPage.StackTechnologies,
   ], []);
 
+  let touchStartY = 0;
+  let touchEndY = 0;
+
   useEffect(() => {
     let throttleTimeout: NodeJS.Timeout | null = null;
 
     throttleTimeout = setTimeout(() => {
       throttleTimeout = null;
-    }, 300)
+    }, 300);
 
     const handleWheel = (event: WheelEvent) => {
       if (throttleTimeout) return;
-
       event.preventDefault();
+      switchPage(pages, setCurrentPage, currentPage, event.deltaY);
+    };
 
-      switchPage(pages, setCurrentPage, currentPage, event);
+    const handleTouchStart = (event: TouchEvent) => {
+      touchStartY = event.touches[0].clientY;
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      touchEndY = event.touches[0].clientY;
+    };
+
+    const handleTouchEnd = () => {
+      const swipeDistance = touchStartY - touchEndY;
+
+      if (Math.abs(swipeDistance) > 50) {
+        switchPage(pages, setCurrentPage, currentPage, swipeDistance);
+      }
     };
 
     window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
-    return () => window.removeEventListener('wheel', handleWheel);
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
   }, [currentPage]);
 
   const pageToRender = getPageComponent(currentPage);
+
   return (
     <div className={sass.layout}>
       <div className={sass.content_container}>
@@ -57,32 +83,30 @@ const Home: FC = () => {
 };
 
 function getPageComponent(currentPage: CurrentPage): ReactElement {
-  let component: ReactElement;
   switch (currentPage) {
     case CurrentPage.Main:
-      component = <MainComponent />
-      break;
+      return <MainComponent />;
     case CurrentPage.WhyChooseUs:
-      component = <WhyChooseUs />
-      break;
+      return <WhyChooseUs />;
     case CurrentPage.StackTechnologies:
-      component = <StackTechnologies />
-      break;
+      return <StackTechnologies />;
     default:
-      throw Error(`Unexpected case with current page ${currentPage}`)
+      throw Error(`Unexpected case with current page ${currentPage}`);
   }
-
-  return component;
 }
 
-function switchPage(pages: CurrentPage[], setCurrentPage: Dispatch<SetStateAction<CurrentPage>>, currentPage: CurrentPage, event: WheelEvent) {
-  if (Math.abs(event.deltaY) > 40) {
+function switchPage(
+  pages: CurrentPage[],
+  setCurrentPage: Dispatch<SetStateAction<CurrentPage>>,
+  currentPage: CurrentPage,
+  deltaY: number
+) {
+  if (Math.abs(deltaY) > 40) {
     const currentIndex = pages.findIndex((p) => p === currentPage);
     if (currentIndex !== -1) {
-      const nextIndex = event.deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
+      const nextIndex = deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
       if (nextIndex >= 0 && nextIndex < pages.length) {
-        const nextPage = pages[nextIndex];
-        setCurrentPage(nextPage);
+        setCurrentPage(pages[nextIndex]);
       }
     }
   }
