@@ -1,5 +1,5 @@
 import technologies from "@/models/enums/technologies";
-import sass from "@/styles/DirectionCard.module.scss";
+import sass from "@/styles/directionCard.module.scss";
 
 export function getTechnologyStyle(tech: technologies): string {
     const stylesMap: Record<technologies, string> = {
