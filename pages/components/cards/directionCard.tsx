@@ -1,5 +1,5 @@
 import technologies from "@/models/enums/technologies";
-import sass from "@/styles/DirectionCard.module.scss";
+import sass from "@/styles/directionCard.module.scss";
 import fonts from "@/styles/fonts.module.scss"
 import { FC, memo, useEffect, useState } from "react";
 import { getIcon } from "@/vll/utils/functions/getIcon";
