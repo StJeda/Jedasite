@@ -20,7 +20,7 @@ const TechnologyCard: FC<IProps> = memo(
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
             >
-                <div className={`${styles.heading} ${isOnFocus ? styles.headingFocused : ""} ${!isOnFocus ? getTechnologyStyle() : ""}`}>
+                <div className={`${styles.heading} ${isOnFocus ? styles.headingFocused : getTechnologyStyle() }`}>
                     { isOnFocus && <p className={styles.headingTitle}>{/* TODO: Change font family to Exo */}Using modern AI</p>}
                     <img 
                         style={isOnFocus ? {marginLeft: "8px"}: undefined}
