@@ -1,4 +1,4 @@
-@use 'colors' as *;
+@use 'variables/colors' as *;
 
 .container {
     position: relative;
@@ -7,7 +7,7 @@
 
 .main{
     position: relative;
-    background-color: $background-2;
+    background-color: $background;
     padding: 20px 22px 20px 22px;
     border-radius: 12px;
     border: 0px solid;
