@@ -1,10 +1,10 @@
 import Technology from "@/models/technology.enum";
 import styles from "@/styles/technology-card.module.scss";
 import { trimText } from "@/utils/utils";
-import { FC, memo } from "react";
+import { FC, memo, useEffect, useState } from "react";
 
 interface IProps{
-    technology: Technology;
+    technology?: Technology;
     header: string;
     description: string;
     isOnFocus: boolean;
@@ -14,6 +14,18 @@ interface IProps{
 
 const TechnologyCard: FC<IProps> = memo(
     ({technology, header, description, isOnFocus, onMouseEnter, onMouseLeave}) => {
+        const [tech, setTech] = useState<Technology | null>(null);
+
+        useEffect(() => {
+            if (technology !== undefined) {
+                setTech(technology);
+            }
+        }, [technology]);
+
+        if (tech === null) {
+            return null;
+        }
+
         return(
             <div 
                 className={styles.container}
@@ -43,7 +55,7 @@ const TechnologyCard: FC<IProps> = memo(
         );
 
         function getTechnologyStyle(): string{
-            switch(technology){
+            switch(tech){
                 case Technology.Design:
                     return styles.design
                 case Technology.Frontend:
@@ -51,12 +63,13 @@ const TechnologyCard: FC<IProps> = memo(
                 case Technology.Backend:
                     return styles.backend
                 default:
-                    throw Error(`Case with technology ${technology} is not described.`);
+                    console.error(`Case with technology ${technology} is not described.`);
+                    return "";
             }
         }
 
         function getIcon(): string{
-            switch(technology){
+            switch(tech){
                 case Technology.Design:
                     return isOnFocus ? "two-stars-black.png" : "two-stars-white.png"
                 case Technology.Frontend:
@@ -64,7 +77,8 @@ const TechnologyCard: FC<IProps> = memo(
                 case Technology.Backend:
                     return isOnFocus ? "chip-black.png" : "chip-white.png"
                 default:
-                    throw Error(`Case with technology ${technology} is not described.`);
+                    console.error(`Case with technology ${technology} is not described.`);
+                    return "";
             }
         }
     },
