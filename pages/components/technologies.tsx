@@ -7,10 +7,10 @@ const StackTechnologies: FC = () => {
     const [focusedCard, setFocusedCard] = useState<Technologies | null>(null);
 
     return (
-        
         <div>
-        <h1 style={{ color: "#fff" }}>StackTechnologies</h1>
-    </div>
+            <h1 style={{ color: "#fff" }}>StackTechnologies</h1>
+        </div>
+
     )
 
     function isFocused(targetTechnology: Technologies): boolean {
