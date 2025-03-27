@@ -54,7 +54,7 @@ const DirectionCard: FC<IProps> = memo(
                         {header}
                     </h3>
                     <p className={sass.description}>
-                        {isOnFocus ? description : trimText(description, 40)}
+                        {isOnFocus ? description : trimText(description, 60)}
                     </p>
                 </div>
             </div>
