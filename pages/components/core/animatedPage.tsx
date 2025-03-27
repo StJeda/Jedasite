@@ -2,11 +2,14 @@ import sass from '/styles/mainpage.module.scss';
 import { motion, AnimatePresence } from "framer-motion";
 import { FC, useEffect, useState } from "react";
 import { getPageComponent } from "@/vll/utils/getComponent";
-import { AnimatedPageProps } from '@/vll/utils/interfaces/animatedPageProps';
 import { Pages } from '@/models/enums/pages';
 import dynamic from 'next/dynamic';
 
-const AnimatedPage: FC<AnimatedPageProps> = ({ currentPage }) => {
+interface IProps {
+    currentPage: Pages;
+}
+
+const AnimatedPage: FC<IProps> = ({ currentPage }) => {
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {

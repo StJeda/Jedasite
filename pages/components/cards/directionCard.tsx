@@ -1,43 +1,51 @@
-import technologies from "@/models/enums/technologies";
 import sass from "@/styles/directionCard.module.scss";
 import fonts from "@/styles/fonts.module.scss"
 import { FC, memo, useEffect, useState } from "react";
 import { getIcon } from "@/vll/utils/functions/getIcon";
 import { getTechnologyStyle } from "@/vll/utils/functions/getTechnologyStyle";
 import { trimText } from "@/vll/utils/functions/trimText";
-import { IProps } from "@/vll/utils/interfaces/props";
+import Technologies from "@/models/enums/technologies";
+
+interface IProps {
+    technology: Technologies;
+    header: string;
+    description: string;
+    isOnFocus: boolean;
+    onMouseEnter: () => void;
+    onMouseLeave: () => void;
+}
+
 
 const DirectionCard: FC<IProps> = memo(
-    ({technology, header, description, isOnFocus, onMouseEnter, onMouseLeave}) => {
-        const [tech, setTech] = useState<technologies | null>(null);
+    ({ technology, header, description, isOnFocus, onMouseEnter, onMouseLeave }) => {
+
+        const [isClient, setIsClient] = useState(false);
 
         useEffect(() => {
-            if (technology !== undefined) {
-                setTech(technology);
-            }
-        }, [technology]);
+            setIsClient(true);
+        }, []);
 
-        if (tech === null) {
-            return null;
-        }
+        if (!isClient)
+            return
+                <div>Loading...</div>; /*Нужно добавить форму прогрузки*/
 
-        return(
-            <div 
+        return (
+            <div
                 className={sass.container}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
             >
-                <div className={`${sass.heading} ${isOnFocus ? sass.headingFocused : getTechnologyStyle(tech) }`}>
-                    { isOnFocus && <p className={sass.headingTitle}>{fonts.Exo}Using modern AI</p>}
-                    <img 
-                        style={isOnFocus ? {marginLeft: "8px"}: undefined}
+                <div className={`${sass.heading} ${isOnFocus ? sass.headingFocused : getTechnologyStyle(technology)}`}>
+                    {isOnFocus && <p className={sass.headingTitle}>{fonts.Exo}Using modern AI</p>}
+                    <img
+                        style={isOnFocus ? { marginLeft: "8px" } : undefined}
                         width={20}
                         height={20}
-                        src={getIcon(tech, isOnFocus)}
+                        src={getIcon(technology, isOnFocus)}
                         alt="icon"
                     />
                 </div>
-                <div className={`${sass.main} ${isOnFocus ? getTechnologyStyle(tech) : ""}`}>
+                <div className={`${sass.main} ${isOnFocus ? getTechnologyStyle(technology) : ""}`}>
                     <h3 className={`${sass.header} ${isOnFocus ? sass.txtLemon : undefined}`}>
                         {fonts.Exo}
                         {header}
@@ -45,7 +53,7 @@ const DirectionCard: FC<IProps> = memo(
                     <p className={sass.description}>
                         {isOnFocus ? description : trimText(description, 40)}
                     </p>
-                </div>  
+                </div>
             </div>
         );
     },
