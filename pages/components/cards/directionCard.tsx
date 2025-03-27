@@ -5,6 +5,10 @@ import { getIcon } from "@/vll/utils/functions/getIcon";
 import { getTechnologyStyle } from "@/vll/utils/functions/getTechnologyStyle";
 import { trimText } from "@/vll/utils/functions/trimText";
 import Technologies from "@/models/enums/technologies";
+import ThreeCircles from "@/public/three-circles-black.svg"
+import Chip from '@/public/chip-black.svg';
+import TwoStars from "@/public/two-stars-black.svg"
+
 
 interface IProps {
     technology: Technologies;
@@ -26,8 +30,7 @@ const DirectionCard: FC<IProps> = memo(
         }, []);
 
         if (!isClient)
-            return
-                <div>Loading...</div>; /*Нужно добавить форму прогрузки*/
+            return <div>Loading...</div>; /*Нужно добавить форму прогрузки*/
 
         return (
             <div
