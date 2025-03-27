@@ -3,6 +3,10 @@
 .container {
     position: relative;
     color: $text-gray;
+    padding-bottom: 26vh;
+    max-width: 20vw;
+    max-height: 1vw;
+    
 }
 
 .main{
@@ -10,6 +14,7 @@
     background-color: $background;
     padding: 20px 22px 20px 22px;
     border-radius: 12px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
     border: 0px solid;
 }
 
@@ -21,8 +26,8 @@
     top: 0;
     right: 12px;
     transform: translateY(-50%);
-    min-width: 44px;
-    height: 40px;
+    min-width: 4.4vh;
+    height: 4.4vh;
     background: $lemon-color;
     border-radius: 50%;
     z-index: 2;
@@ -32,14 +37,14 @@
 
 .headingFocused {
     width: auto;
-    padding: 0 16px;
+    padding: 0 1vh;
     border-radius: 20px; 
 }
 
 .headingTitle{
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 0.8rem;
     color: #151515;
 }
 
@@ -57,13 +62,14 @@
 }
 
 .header{
-    font-size: 24px;
+    font-size: 0.8rem;
     font-weight: 500;
     text-transform: uppercase;
 }
 
 .description{
-    font-size: 18px;
+    font-size: 0.8rem;
     font-weight: 400;
-    max-width: 400px;
+    max-width: 110vw;
+    max-height: 25vh;
 }
