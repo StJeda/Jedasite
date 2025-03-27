@@ -1,7 +1,7 @@
-enum Technology{
+enum Technologies{
     Design,
     Frontend,
     Backend
 }
 
-export default Technology;
+export default Technologies;
