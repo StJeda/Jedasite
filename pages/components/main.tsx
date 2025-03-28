@@ -11,66 +11,74 @@ const MainComponent: FC = () => {
     return (
         <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
             <div className="animatedBlock" style={{ position: 'fixed', width: '10vw', whiteSpace: 'nowrap', zIndex: 500 }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <p className={fonts.exo} style={{ color: 'white', fontSize: '1.6rem', fontWeight: 800, marginRight: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginTop: '-2vh' }}>
+                    <p className={fonts.exo} style={{ color: 'white', fontSize: '2.4rem', fontWeight: 800, marginRight: '10px' }}>
                         CREATING A
                     </p>
-                    <p className={fonts.exoItalic} style={{ color: '#D8FF4C', fontSize: '1.6rem', fontWeight: 800 }}>
+                    <p className={fonts.exoItalic} style={{ color: '#D8FF4C', fontSize: '2.4rem', fontWeight: 800 }}>
                         DIGITAL FUTURE
                     </p>
                 </div>
                 <div>
-                    <p className={fonts.exo} style={{ marginTop: '-3vh', color: 'white', fontSize: '1.6rem', fontWeight: 800, marginRight: '10px' }}>
+                    <p className={fonts.exo} style={{ marginTop: '-5vh', color: 'white', fontSize: '2.4rem', fontWeight: 800, marginRight: '10px' }}>
                         FOR YOUR BUSSINESS
                     </p>
                 </div>
-                <div>
-                    <p className={fonts.exo} style={{ color: 'white', fontSize: '0.7rem', fontWeight: 300 }}>
+                <div style={{ marginTop: '-3vh' }}>
+                    <p className={fonts.exo} style={{ color: 'white', fontSize: '0.8rem', fontWeight: 400 }}>
                         We design, develop, and optimize digital experiences that drive.
                     </p>
-                    <p className={fonts.exo} style={{ marginTop: '-1vh', color: 'white', fontSize: '0.7rem', fontWeight: 300 }}>
+                    <p className={fonts.exo} style={{ marginTop: '-1vh', color: 'white', fontSize: '0.8rem', fontWeight: 400 }}>
                         Enhance visibility, and keep you ahead in an evolving market.
                     </p>
-                    <p className={fonts.exo} style={{ marginTop: '-1vh', color: 'white', fontSize: '0.7rem', fontWeight: 300 }}>
+                    <p className={fonts.exo} style={{ marginTop: '-1vh', color: 'white', fontSize: '0.8rem', fontWeight: 400 }}>
                         Let’s build your future - efficient, scalable, and impactful.
                     </p>
                 </div>
-                <div style={{ paddingTop: '38vh', marginLeft: '-1vh', marginBottom: '2vh' }}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', margin: '0.9vh', padding: '5px' }}>
-                            Design
-                        </p>
-                        <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', margin: '1vh', padding: '5px' }}>
-                            Server
-                        </p>
-                        <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', margin: '1vh', padding: '5px' }}>
-                            Interface
-                        </p>
-                        <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', margin: '0.9vh', padding: '5px' }}>
-                            CI/CD
-                        </p>
+                <div style={{width: "20vw"}}>
+                    <div style={{paddingTop: '24vh', marginLeft: '-1vh', marginBottom: '2vh' }}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center' }}>
+                            <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', borderRadius: '4px', margin: '0.9vh', padding: '6px' }}>
+                                Design
+                            </p>
+                            <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', borderRadius: '4px', margin: '1vh', padding: '6px' }}>
+                                Apps
+                            </p>
+                            <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', borderRadius: '4px', margin: '1vh', padding: '6px' }}>
+                                Servers
+                            </p>
+                            <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', borderRadius: '4px', margin: '0.9vh', padding: '6px' }}>
+                                Analytics
+                            </p>
+                            <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', borderRadius: '4px', margin: '0.9vh', padding: '6px' }}>
+                                Hosting
+                            </p>
+                            <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', borderRadius: '4px', margin: '0.9vh', padding: '6px' }}>
+                                Servers
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <button
-                        className={fonts.exo}
-                        style={{
-                            background: '#282828',
-                            color: '#23E1BC',
-                            borderTop: 'none',
-                            borderLeft: 'none',
-                            borderRight: 'none',
-                            borderBottom: '4px solid #23E1BC',
-                            boxShadow: '0 10px 15px rgba(0, 0, 0, 0.4)',
-                            width: '21.4vw',
-                            height: '6vh',
-                            borderBottomLeftRadius: '0.44rem',
-                            borderBottomRightRadius: '0.44rem',
-                            marginBottom: '7vh'
-                        }}
-                    >
-                        START THE PROJECT
-                    </button>
+                    <div>
+                        <button
+                            className={fonts.exo}
+                            style={{
+                                background: '#282828',
+                                color: '#23E1BC',
+                                borderTop: 'none',
+                                borderLeft: 'none',
+                                borderRight: 'none',
+                                borderBottom: '5px solid #23E1BC',
+                                boxShadow: '0 10px 15px rgba(0, 0, 0, 0.4)',
+                                width: '100%',
+                                height: '7vh',
+                                borderBottomLeftRadius: '0.44rem',
+                                borderBottomRightRadius: '0.44rem',
+                                marginBottom: '7vh'
+                            }}
+                        >
+                            START THE PROJECT
+                        </button>
+                    </div>
                 </div>
             </div>
             <div style={{ flex: 1, display: 'flex', justifyContent: 'center', marginLeft: '22vw', marginRight: '2vw' }}>
