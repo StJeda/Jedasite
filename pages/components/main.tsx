@@ -36,7 +36,7 @@ const MainComponent: FC = () => {
                     </p>
                 </div>
                 <div style={{width: "20vw"}}>
-                    <div style={{paddingTop: '24vh', marginLeft: '-1vh', marginBottom: '2vh' }}>
+                    <div style={{paddingTop: '24vh', marginLeft: '-1vh', marginBottom: '4vh' }}>
                         <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center' }}>
                             <p className={fonts.exo} style={{ color: 'white', border: '1px solid white', borderRadius: '4px', margin: '0.9vh', padding: '6px' }}>
                                 Design
