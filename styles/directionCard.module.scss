@@ -3,10 +3,9 @@
 .container {
     position: relative;
     color: $text-gray;
-    padding-bottom: 26vh;
-    max-width: 20vw;
     max-height: 1vw;
-    
+    width: 300px;
+    min-width: 280px;
 }
 
 .main{
