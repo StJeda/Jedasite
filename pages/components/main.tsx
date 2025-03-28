@@ -2,7 +2,6 @@ import Directions from "@/models/enums/directions";
 import DirectionCard from "./cards/directionCard";
 import sass from "/styles/mainpage.module.scss";
 import fonts from "@/styles/fonts.module.scss";
-
 import { FC, useState } from "react";
 import JedaLogo from "./svgs/jedaLogo";
 
@@ -116,7 +115,6 @@ const MainComponent: FC = () => {
     function isFocused(targetDirection: Directions): boolean {
         return focusedCard === targetDirection ? true : false;
     }
-
 };
 
 export default MainComponent;
