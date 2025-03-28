@@ -1,4 +1,4 @@
-import technologies from "@/models/enums/technologies";
+import technologies from "@/models/enums/directions";
 import Chip from '@/public/chip-black.svg';
 import ThreeCircles from "@/public/three-circles-black.svg"
 import TwoStars from "@/public/two-stars-black.svg"
