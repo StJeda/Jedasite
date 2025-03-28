@@ -79,7 +79,7 @@ const MainComponent: FC = () => {
                     <JedaLogo focusedCard={focusedCard} />
                 </div>
             </div>
-            <div>
+            <div className="animatedBlock">
                 <div style={{ marginTop: '6vh', paddingBottom: '26vh' }}>
                     <DirectionCard
                         header="UI/UX Design"
