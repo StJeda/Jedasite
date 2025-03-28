@@ -1,10 +1,10 @@
-import Technologies from "@/models/enums/technologies";
+import Directions from "@/models/enums/directions";
 import { FC, useState } from "react";
 import DirectionCard from "./cards/directionCard";
 
 
 const StackTechnologies: FC = () => {
-    const [focusedCard, setFocusedCard] = useState<Technologies | null>(null);
+    const [focusedCard, setFocusedCard] = useState<Directions | null>(null);
 
     return (
         <div>
@@ -13,8 +13,8 @@ const StackTechnologies: FC = () => {
 
     )
 
-    function isFocused(targetTechnology: Technologies): boolean {
-        return focusedCard === targetTechnology ? true : false;
+    function isFocused(targetDirection: Directions): boolean {
+        return focusedCard === targetDirection ? true : false;
     }
 }
 
