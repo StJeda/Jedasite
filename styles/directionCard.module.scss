@@ -40,13 +40,6 @@
     border-radius: 20px; 
 }
 
-.headingTitle{
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 0.8rem;
-    color: #151515;
-}
-
 .design{
     background-color: $purple-design;
 }
@@ -61,14 +54,21 @@
 }
 
 .header{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;
 }
 
 .description{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 400;
     max-width: 110vw;
     max-height: 25vh;
+}
+
+.headingTitle{
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: #151515;
 }
