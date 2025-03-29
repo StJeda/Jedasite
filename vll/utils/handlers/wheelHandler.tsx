@@ -13,6 +13,10 @@ export const wheelHandler = (
   useEffect(() => {
     let throttleTimeout: NodeJS.Timeout | null = null;
 
+    throttleTimeout = setTimeout(() => {
+      throttleTimeout = null;
+    }, 300)
+
     const handleWheel = (event: WheelEvent) => {
       if (throttleTimeout) return;
       event.preventDefault();
