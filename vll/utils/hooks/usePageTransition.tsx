@@ -6,7 +6,7 @@ export const usePageTransition = () => {
     const [currentPage, setCurrentPage] = useState(Pages.Main);
     const pages = useMemo(() => [
     Pages.Main,
-    Pages.WhyChooseUs,
+    Pages.AboutUs,
     Pages.StackTechnologies,
   ], []);
 

@@ -7,7 +7,7 @@ export const usePageNavigation = () => {
 
   const pages = useMemo(() => [
     Pages.Main,
-    Pages.WhyChooseUs,
+    Pages.AboutUs,
     Pages.StackTechnologies,
   ], []);
 

@@ -1,5 +1,5 @@
 export enum Pages {
     Main,
-    WhyChooseUs,
+    AboutUs,
     StackTechnologies
 }
