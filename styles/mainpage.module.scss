@@ -16,10 +16,66 @@ $content-container-bg: url('https://www.transparenttextures.com/patterns/asfalt-
     margin: 0px;
 }
 
+.left_sidebar {
+    @include systemlayout;
+    height: 92vh;
+    background-color: #282828;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+@mixin sidebar_button {
+    background-color: #282828;
+    aspect-ratio: 1 / 1;
+    flex-grow: 1;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        filter: brightness(1.2);
+    };
+}
+
+.hamburhermenu_button {
+    @include systemlayout;
+    @include sidebar_button;
+    align-self: flex-start;
+}
+
+.hamburhermenu_icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.buttongroup_left_sidebar {
+    @include systemlayout;
+    align-self: flex-end;
+    flex-direction: column;
+}
+
+.contact_us_button_left_sidebar {
+    @include systemlayout;
+    @include sidebar_button;
+}
+
+.right_sidebar {
+    @include systemlayout;
+    height: 92vh;
+    background-color: #282828;
+    flex-grow: 1;
+    align-items: stretch;
+}
+
 .logo {
     margin-top: 0.5vw;
     width: 38vw;
     height: auto;
+
+    @media (max-width: $small-screen) {
+        height: 96vh;
+        width: 94vw; 
+    }
 }
 
 .content_container {
