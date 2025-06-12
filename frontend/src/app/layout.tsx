@@ -1,16 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import styles from "./layout.module.scss";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,8 +15,37 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body>
+        <div className={styles.topBorder}>
+          <div className={styles.topLogo}>
+            <Image src="/Logo.svg" alt="Logo" width={56} height={31} />
+          </div>
+        </div>
+        <div className={styles.leftBorder}>
+          <div className={styles.burgerMenu}>
+            <Image src="/Burger_Menu_Icon.svg" alt="Menu" width={30} height={30} />
+          </div>
+          <div className={styles.socialButtons}>
+            <div className={styles.socialButton}>
+              <Image src="/Mail_Logo.svg" alt="Mail" width={24} height={24} />
+            </div>
+            <div className={styles.socialButton}>
+              <Image src="/Telegram_Logo.svg" alt="Telegram" width={24} height={24} />
+            </div>
+            <div className={styles.socialButton}>
+              <Image src="/Instagram_Logo.svg" alt="Instagram" width={24} height={24} />
+            </div>
+          </div>
+        </div>
+        <div className={styles.rightBorder}>
+          <div className={styles.rightLogo}>
+            <Image src="/Logo.svg" alt="Logo" width={56} height={31} />
+          </div>
+        </div>
+        <div className={styles.mainFrame}>
+          {children}
+        </div>
+        <div className={styles.bottomBorder}></div>
       </body>
     </html>
   );

@@ -1,0 +1,129 @@
+@media (max-width: 450px) {
+    .topBorder {
+        background-color: #222222;
+        height: 40px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+    }
+    
+    .bottomBorder {
+        background-color: #222222;
+        height: 10px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+    }
+    
+    .leftBorder, .rightBorder {
+        display: none;
+    }
+    
+    .topLogo {
+        display: block;
+        transform: scale(0.7);
+    }
+    
+    .rightLogo, .burgerMenu, .socialButtons {
+        display: none;
+    }
+}
+
+@media (min-width: 451px) {
+    .topBorder, .bottomBorder {
+        display: none;
+    }
+    
+    .leftBorder {
+        background-color: #222222;
+        height: 100vh;
+        width: 40px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+    
+    .rightBorder {
+        background-color: #222222;
+        height: 100vh;
+        width: 40px;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: flex-start;
+        padding-top: 10px;
+        justify-content: center;
+    }
+    
+    .topLogo {
+        display: none;
+    }
+    
+    .rightLogo {
+        display: block;
+        transform: scale(0.7);
+    }
+    
+    .burgerMenu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    
+    .socialButtons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .socialButton {
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+.mainFrame {
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    
+    @media (max-width: 450px) {
+        padding-top: 60px;
+        padding-bottom: 30px;
+    }
+    
+    @media (min-width: 451px) {
+        padding-left: 60px;
+        padding-right: 60px;
+        height: 100vh;
+        overflow: hidden;
+    }
+}
